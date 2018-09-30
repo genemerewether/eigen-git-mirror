@@ -51,7 +51,9 @@
   #define EIGEN_ALIGN_TO_BOUNDARY(n) __attribute__((aligned(n)))
   #define EIGEN_ALIGNOF(x) __alignof(x)
 #else
-  #error Please tell me what is the equivalent of __attribute__((aligned(n))) and __alignof(x) for your compiler
+  #if !defined(EIGEN_ALIGN_TO_BOUNDARY) || !defined(EIGEN_ALIGNOF)
+    #error Please tell me what is the equivalent of __attribute__((aligned(n))) and __alignof(x) for your compiler
+  #endif
 #endif
 
 // If the user explicitly disable vectorization, then we also disable alignment
